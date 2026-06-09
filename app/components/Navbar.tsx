@@ -9,7 +9,7 @@ const navItems = [
 export function Navbar() {
   return (
     <header className="sticky top-0 z-50 w-full border-b border-white/10 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-      <div className="mx-auto max-w-7xl px-6 lg:px-12">
+      <div className="w-full px-5 sm:px-14">
         <div className="flex h-16 items-center justify-between">
           <Link href="/" className="flex items-center gap-2">
             <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-[#84DCC6] font-bold text-black">
@@ -23,7 +23,7 @@ export function Navbar() {
               <Link
                 key={item.label}
                 href={item.href}
-                className="group relative text-sm font-bold text-foreground/70 transition-colors hover:text-[#84DCC6]"
+                className="group relative text-sm text-[#95A3B3] font-bold transition-colors hover:text-[#84DCC6]"
               >
                 {item.label}
                 <span className="absolute -bottom-0.5 left-0 h-0.5 w-0 rounded-full bg-[#84DCC6] transition-all duration-300 group-hover:w-full" />
@@ -34,12 +34,12 @@ export function Navbar() {
           <div className="flex items-center gap-4">
             <Link
               href="/resume"
-              className="group relative hidden overflow-hidden rounded-full border border-[#84DCC6] px-4 py-2 text-sm font-medium md:inline-flex"
+              className="group relative hidden h-9 items-center justify-center overflow-hidden rounded-lg border border-[#84DCC6] bg-[#84DCC6] px-4 text-sm font-bold text-black shadow-sm transition-colors duration-200 hover:border-white hover:bg-white md:inline-flex"
             >
-              <span className="relative z-10 transition-transform duration-200 group-hover:-translate-y-full">
+              <span className="relative z-10 inline-flex items-center justify-center leading-none transition-transform duration-200 group-hover:translate-y-[160%]">
                 Resume
               </span>
-              <span className="absolute inset-0 flex translate-y-full items-center justify-center transition-transform duration-200 group-hover:translate-y-0">
+              <span className="absolute inset-0 flex items-center justify-center translate-y-[160%] leading-none transition-transform duration-200 group-hover:translate-y-0">
                 Resume
               </span>
             </Link>
