@@ -8,7 +8,7 @@ const navItems = [
 
 export function Navbar() {
   return (
-    <header className="sticky top-0 z-50 w-full border-b border-white/10 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+    <header className="sticky top-0 z-50 w-full border-b border-white/10 bg-background/95 backdrop-blur supports-backdrop-filter:bg-background/60ß">
       <div className="w-full px-5 sm:px-14">
         <div className="flex h-16 items-center justify-between">
           <Link href="/" className="flex items-center gap-2">
@@ -33,7 +33,8 @@ export function Navbar() {
 
           <div className="flex items-center gap-4">
             <Link
-              href="/resume"
+              href="/Resume.pdf"
+              target="_blank"
               className="group relative hidden h-9 items-center justify-center overflow-hidden rounded-lg border border-[#84DCC6] bg-[#84DCC6] px-4 text-sm font-bold text-black shadow-sm transition-colors duration-200 hover:border-white hover:bg-white md:inline-flex"
             >
               <span className="relative z-10 inline-flex items-center justify-center leading-none transition-transform duration-200 group-hover:translate-y-[160%]">
@@ -57,7 +58,7 @@ export function Navbar() {
                 strokeWidth="2"
                 strokeLinecap="round"
                 strokeLinejoin="round"
-                className="h-5 w-5"
+                className="h-8 w-8"
               >
                 <path d="M4 6h16" />
                 <path d="M4 12h16" />
