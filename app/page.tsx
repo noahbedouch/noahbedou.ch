@@ -13,11 +13,12 @@ const projects = [
     github: "https://github.com/British-Toast-Games/gmtk25",
   },
   {
-    title: "Project 2",
-    image: "/noah.jpg",
-    description: "yo",
+    title: "noahbedou.ch",
+    image: "/site.png",
+    description:
+      "Portfolio site built with Next.js and Tailwind CSS - you're looking at it right now!",
     link: "",
-    github: "",
+    github: "https://github.com/noahbedouch/noahbedou.ch",
   },
   {
     title: "Project 3",
