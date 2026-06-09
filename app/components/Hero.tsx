@@ -4,7 +4,7 @@ import Link from "next/link";
 const socialLinks = [
   {
     label: "GitHub",
-    href: "#",
+    href: "https://github.com/noahbedouch",
     icon: (
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -18,7 +18,7 @@ const socialLinks = [
   },
   {
     label: "LinkedIn",
-    href: "#",
+    href: "https://www.linkedin.com/in/noahbedouch/",
     icon: (
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -32,7 +32,7 @@ const socialLinks = [
   },
   {
     label: "Email",
-    href: "mailto:noah@example.com",
+    href: "mailto:noahbedouch@gmail.com",
     icon: (
       <svg
         xmlns="http://www.w3.org/2000/svg"
