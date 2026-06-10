@@ -84,7 +84,7 @@ export function Hero() {
 
             <div className="flex flex-wrap gap-4 pt-4">
               <Link
-                href="#projects"
+                href="/projects"
                 className="group inline-flex items-center rounded-lg bg-[#84DCC6] px-6 py-3 text-sm font-semibold text-black transition-colors hover:bg-white"
               >
                 View My Work

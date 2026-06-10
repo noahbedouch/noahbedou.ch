@@ -40,7 +40,7 @@ export default function Projects() {
               Recent Projects
             </h2>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              Here you&apos;ll find a selection of my recent projects.
+              Here you&apos;ll find a collection of my recent projects.
             </p>
           </div>
         </div>
