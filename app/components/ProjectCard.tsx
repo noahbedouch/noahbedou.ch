@@ -1,26 +1,100 @@
-import Image from "next/image";
+"use client";
 
-export function ProjectCard(props: {
+import Image from "next/image";
+import { useEffect, useRef, useState } from "react";
+
+type ProjectCardProps = {
   title: string;
   image: string;
   description: string;
   link: string;
   github: string;
-}) {
+};
+
+export function ProjectCard(props: ProjectCardProps) {
+  const cardRef = useRef<HTMLDivElement | null>(null);
+  const [isMobileActive, setIsMobileActive] = useState(false);
+
+  useEffect(() => {
+    if (typeof window === "undefined" || !cardRef.current) {
+      return;
+    }
+
+    const mediaQuery = window.matchMedia("(max-width: 767px)");
+    let observer: IntersectionObserver | null = null;
+
+    const setupObserver = () => {
+      observer?.disconnect();
+      observer = null;
+
+      if (!mediaQuery.matches || !cardRef.current) {
+        setIsMobileActive(false);
+        return;
+      }
+
+      observer = new IntersectionObserver(
+        ([entry]) => {
+          setIsMobileActive(
+            entry.isIntersecting && entry.intersectionRatio >= 0.55,
+          );
+        },
+        {
+          threshold: [0.25, 0.55, 0.85],
+          rootMargin: "-10% 0px -10% 0px",
+        },
+      );
+
+      observer.observe(cardRef.current);
+    };
+
+    const handleChange = () => {
+      setupObserver();
+    };
+
+    setupObserver();
+
+    if (typeof mediaQuery.addEventListener === "function") {
+      mediaQuery.addEventListener("change", handleChange);
+    } else {
+      mediaQuery.addListener(handleChange);
+    }
+
+    return () => {
+      observer?.disconnect();
+
+      if (typeof mediaQuery.removeEventListener === "function") {
+        mediaQuery.removeEventListener("change", handleChange);
+      } else {
+        mediaQuery.removeListener(handleChange);
+      }
+    };
+  }, []);
+
   return (
-    <div className="rounded-xl bg-[#2E2E2E] group overflow-hidden border border-white/10 hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
-      <div className="relative overflow-hidden aspect-video">
+    <div
+      ref={cardRef}
+      className="group overflow-hidden rounded-xl border border-white/10 bg-[#2E2E2E] transition-all duration-300 hover:-translate-y-1 hover:shadow-xl"
+    >
+      <div className="relative aspect-video overflow-hidden">
         <Image
           src={props.image}
           alt={props.title}
           fill={true}
-          className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
+          className={`h-full w-full object-cover transition-transform duration-300 ${
+            isMobileActive ? "scale-110" : ""
+          } md:group-hover:scale-110`}
         />
-        <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center gap-4">
+        <div
+          className={`absolute inset-0 flex items-center justify-center gap-4 bg-black/60 transition-opacity duration-300 ${
+            isMobileActive
+              ? "pointer-events-auto opacity-100"
+              : "pointer-events-none opacity-0"
+          } md:pointer-events-none md:opacity-0 md:group-hover:pointer-events-auto md:group-hover:opacity-100`}
+        >
           <a
             href={props.link}
             target="_blank"
-            className="h-10 w-10 rounded-full bg-[#222222] flex items-center justify-center hover:bg-[#84DCC6] hover:text-[#222222] transition-colors"
+            className="flex h-10 w-10 items-center justify-center rounded-full bg-[#222222] transition-colors hover:bg-[#84DCC6] hover:text-[#222222]"
             aria-label="View project"
           >
             <svg
@@ -43,7 +117,7 @@ export function ProjectCard(props: {
           <a
             href={props.github}
             target="_blank"
-            className="h-10 w-10 rounded-full bg-[#222222] flex items-center justify-center hover:bg-[#84DCC6] hover:text-[#222222] transition-colors"
+            className="flex h-10 w-10 items-center justify-center rounded-full bg-[#222222] transition-colors hover:bg-[#84DCC6] hover:text-[#222222]"
             aria-label="View code"
           >
             <svg
@@ -64,10 +138,10 @@ export function ProjectCard(props: {
         </div>
       </div>
       <div className="p-6">
-        <h3 className="text-xl font-semibold mb-2 group-hover:text-primary transition-colors">
+        <h3 className="mb-2 text-xl font-semibold transition-colors group-hover:text-[#84DCC6]">
           {props.title}
         </h3>
-        <p className="text-[#95A3B3] mb-4 text-sm">{props.description}</p>
+        <p className="mb-4 text-sm text-[#95A3B3]">{props.description}</p>
       </div>
     </div>
   );
