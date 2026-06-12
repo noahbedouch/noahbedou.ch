@@ -52,26 +52,54 @@ export function Navbar() {
 
             <button
               type="button"
-              aria-label="Open navigation menu"
+              aria-label={
+                isMobileMenuOpen
+                  ? "Close navigation menu"
+                  : "Open navigation menu"
+              }
               aria-expanded={isMobileMenuOpen}
               aria-controls="mobile-navigation"
               onClick={() => setIsMobileMenuOpen((open) => !open)}
               className="inline-flex h-10 w-10 items-center justify-center rounded-md transition-colors hover:bg-white/10 md:hidden"
             >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                className="h-8 w-8"
-              >
-                <path d="M4 6h16" />
-                <path d="M4 12h16" />
-                <path d="M4 18h16" />
-              </svg>
+              <span className="relative block h-8 w-8">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  className={`absolute inset-0 h-8 w-8 transition-all duration-200 ${
+                    isMobileMenuOpen
+                      ? "scale-75 rotate-90 opacity-0"
+                      : "scale-100 rotate-0 opacity-100"
+                  }`}
+                >
+                  <path d="M4 6h16" />
+                  <path d="M4 12h16" />
+                  <path d="M4 18h16" />
+                </svg>
+
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  className={`absolute inset-0 h-8 w-8 transition-all duration-200 ${
+                    isMobileMenuOpen
+                      ? "scale-100 rotate-0 opacity-100"
+                      : "scale-75 -rotate-90 opacity-0"
+                  }`}
+                >
+                  <path d="M6 6 18 18" />
+                  <path d="M18 6 6 18" />
+                </svg>
+              </span>
             </button>
           </div>
         </div>
